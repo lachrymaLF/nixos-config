@@ -2,8 +2,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
+      ./hardware-configuration-amd.nix
     ];
 
   # Bootloader
@@ -18,10 +18,10 @@
   networking.networkmanager.enable = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    useXkbConfig = true; # use xkb.options in tty.
-  };
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   useXkbConfig = true; # use xkb.options in tty.
+  # };
 
   nixpkgs.config.allowUnfree= true;
 
@@ -31,44 +31,44 @@
   xdg.portal.enable = true;
 
   # KDE
-  services.xserver = {
-    enable = true;
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      extraPackages = with pkgs.kdePackages; [ sddm-kcm ];
-    };
+  # services.xserver = {
+  #   enable = true;
+  #   displayManager.sddm = {
+  #     enable = true;
+  #     wayland.enable = true;
+  #     extraPackages = with pkgs.kdePackages; [ sddm-kcm ];
+  #   };
     
-    excludePackages = with pkgs; [ xterm ];
-  };
-  services.desktopManager.plasma6.enable = true;
-  environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+  #   excludePackages = with pkgs; [ xterm ];
+  # };
+  # services.desktopManager.plasma6.enable = true;
+  # environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
 
   # GNOME
-  # services.xserver = {
-  #  enable = true;
-  #  displayManager.gdm.enable = true;
-  #  desktopManager.gnome.enable = true;
-  #  excludePackages = with pkgs; [
-  #    xterm
-  #  ];
-  # };
-  # environment.gnome.excludePackages = with pkgs; [
-  #   gnome.totem
-  #   gnome-tour
-  #   gnome.cheese
-  #   gnome.geary
-  #   gnome.gnome-music
-  #   gnome.yelp
-  #   gnome.gnome-contacts
-  #   gnome.gnome-initial-setup
-  #   epiphany
-  #   gnome.simple-scan
-  #   gnome.gnome-calculator
-  #   gnome.gnome-maps
-  #   gedit
-  # ];
-  # programs.dconf.enable = true;
+  services.xserver = {
+   enable = true;
+   displayManager.gdm.enable = true;
+   desktopManager.gnome.enable = true;
+   excludePackages = with pkgs; [
+     xterm
+   ];
+  };
+  environment.gnome.excludePackages = with pkgs; [
+    gnome.totem
+    gnome-tour
+    gnome.cheese
+    gnome.geary
+    gnome.gnome-music
+    gnome.yelp
+    gnome.gnome-contacts
+    gnome.gnome-initial-setup
+    epiphany
+    gnome.simple-scan
+    gnome.gnome-calculator
+    gnome.gnome-maps
+    gedit
+  ];
+  programs.dconf.enable = true;
 
   # Fonts
   fonts.packages = with pkgs; [
@@ -106,10 +106,10 @@
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
-#      kdePackages.fcitx5-configtool
+      kdePackages.fcitx5-configtool
       fcitx5-mozc
       fcitx5-gtk
-#      kdePackages.fcitx5-qt
+      kdePackages.fcitx5-qt
       fcitx5-lua
       kdePackages.fcitx5-chinese-addons
     ];
@@ -124,7 +124,6 @@
 
   environment.systemPackages = with pkgs; [
     git
-    pciutils
     wget
   ];
 
