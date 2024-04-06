@@ -10,6 +10,16 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Virtualization
+  # virtualisation = {
+  #   libvirtd = {
+  #     enable = true;
+  #     qemu.ovmf.enable = true;
+  #   };
+  #   spiceUSBRedirection.enable = true;
+  # };
+  # programs.virt-manager.enable = true;
+  
   # System
   networking.hostName = "lachrymal-abg"; # Define your hostname.
   time.timeZone = "America/Toronto";
@@ -125,6 +135,7 @@
   environment.systemPackages = with pkgs; [
     git
     wget
+    #qemu
   ];
 
   programs.gnupg.agent = {

@@ -10,7 +10,12 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" "usb_storage" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" "wl" ];
+  boot.kernelModules = [
+    #"kvm"
+    "kvm-amd"
+    "wl"
+    # "vfio_pci" "vfio_iommu_type1" "vfio"
+  ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   fileSystems."/" =
@@ -51,8 +56,15 @@
     extraPackages = with pkgs; [ amdvlk rocmPackages.clr.icd  ];
     extraPackages32 = with pkgs; [ amdvlk ];
   };
+
   services.xserver.videoDrivers = [ "amdgpu" ];
   
   hardware.opentabletdriver.enable = true;
   services.ratbagd.enable = true;
+
+  
+  # VFIO
+  boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
+  # boot.extraModprobeConfig = "options vfio-pci ids=10de:1b06,10de:10ef"; 
+  # boot.kernelParams = [ "video=efifb:off" ];
 }

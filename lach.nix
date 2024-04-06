@@ -5,7 +5,9 @@
   home.homeDirectory = "/home/lach";
   
   home.packages = with pkgs; [
-    discord
+    pciutils
+    
+    armcord
     fastfetch
     ffmpeg-full
     firefox
@@ -36,7 +38,7 @@
 
     osu-lazer
 
-
+    # hydrapaper
     gnome.gnome-tweaks
     gnome.adwaita-icon-theme
     gnomeExtensions.appindicator
@@ -50,6 +52,8 @@
     gnomeExtensions.kimpanel
     gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
     gnomeExtensions.tray-icons-reloaded
+    gnomeExtensions.burn-my-windows
+    gnomeExtensions.compiz-windows-effect
   ];
 
   dconf.settings = {
