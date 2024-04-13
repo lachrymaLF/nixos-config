@@ -56,15 +56,32 @@
     extraPackages = with pkgs; [ amdvlk rocmPackages.clr.icd  ];
     extraPackages32 = with pkgs; [ amdvlk ];
   };
-
   services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # services.xserver.videoDrivers = ["nvidia"];
+
+  # hardware.nvidia = {
+  #   modesetting.enable = true;
+  #   powerManagement.enable = true;
+  #   powerManagement.finegrained = false;
+  #   open = false;
+  #   nvidiaSettings = true;
+  #   package = config.boot.kernelPackages.nvidiaPackages.production;
+  # };
+  
+  # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+
   
   hardware.opentabletdriver.enable = true;
   services.ratbagd.enable = true;
 
   
   # VFIO
-  boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
+  # boot.blacklistedKernelModules = [ "nvidia" "nouveau" ];
   # boot.extraModprobeConfig = "options vfio-pci ids=10de:1b06,10de:10ef"; 
   # boot.kernelParams = [ "video=efifb:off" ];
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 }

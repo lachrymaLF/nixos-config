@@ -7,18 +7,25 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
-    nixosConfigurations.lachrymal-abg = nixpkgs.lib.nixosSystem rec {
+  outputs = inputs@{ nixpkgs, home-manager, spicetify-nix, ... }: {
+    nixosConfigurations.lachrymal-abg = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.lach = ./lach.nix;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.lach = import ./home/lach.nix;
+            extraSpecialArgs = {
+              inherit inputs;
+              inherit spicetify-nix;
+            };
+          };
         }
       ];      
     };

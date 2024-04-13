@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ./hardware-configuration-amd.nix
+      ./hardware-configuration.nix
     ];
 
   # Bootloader
@@ -126,16 +126,16 @@
     fcitx5.waylandFrontend = true;
   };
 
-
   users.users.lach = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   environment.systemPackages = with pkgs; [
     git
     wget
     #qemu
+    libinput
   ];
 
   programs.gnupg.agent = {
