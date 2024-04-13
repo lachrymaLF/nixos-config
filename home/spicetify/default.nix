@@ -10,7 +10,7 @@ in
     enabledExtensions = with spicePkgs.extensions; [
       playlistIcons
       history
-      genre
+     # genre
       adblock
       savePlaylists
       volumePercentage
