@@ -9,14 +9,15 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" "usb_storage" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = [ "wl" ];
   boot.kernelModules = [
-    #"kvm"
-    "kvm-amd"
+    "kvm"
+    "kvm-intel"
     "wl"
     # "vfio_pci" "vfio_iommu_type1" "vfio"
   ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  boot.blacklistedKernelModules = [ "nouveau" "b44"  "b43" "b43legacy" "ssb" "brcmsmac" "bcma" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/37e07dcb-c3b1-4d65-bdb7-eb1fffce07a7";
@@ -46,28 +47,27 @@
   # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [ amdvlk rocmPackages.clr.icd  ];
-    extraPackages32 = with pkgs; [ amdvlk ];
+    # extraPackages = with pkgs; [ amdvlk rocmPackages.clr.icd  ];
+    # extraPackages32 = with pkgs; [ amdvlk ];
   };
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  # services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
-  # hardware.nvidia = {
-  #   modesetting.enable = true;
-  #   powerManagement.enable = true;
-  #   powerManagement.finegrained = false;
-  #   open = false;
-  #   nvidiaSettings = true;
-  #   package = config.boot.kernelPackages.nvidiaPackages.production;
-  # };
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+  };
   
   # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
@@ -82,6 +82,6 @@
   # boot.kernelParams = [ "video=efifb:off" ];
 
   # Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  # hardware.bluetooth.enable = true;
+  # hardware.bluetooth.powerOnBoot = true;
 }

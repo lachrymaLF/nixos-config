@@ -13,7 +13,7 @@ in
      # genre
       adblock
       savePlaylists
-      volumePercentage
+     # volumePercentage
       copyToClipboard
       songStats
       hidePodcasts
