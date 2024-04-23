@@ -13,7 +13,6 @@
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Virtualization
   # virtualisation = {
   #   libvirtd = {
   #     enable = true;
@@ -31,54 +30,51 @@
   networking.networkmanager.enable = true;
 
   i18n.defaultLocale = "ja_JP.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  console.font = "Lat2-Terminus16";
 
-  nixpkgs.config.allowUnfree= true;
+  nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # XDG Portal
   xdg.portal.enable = true;
 
-  # KDE
-  services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      extraPackages = with pkgs.kdePackages; [ sddm-kcm ];
+  # Plasma
+  # services.desktopManager.plasma6.enable = true;
+
+  # DM
+  services.xserver = {
+   enable = true;
+   displayManager.gdm.enable = true;
+   desktopManager.gnome.enable = true;
+   excludePackages = with pkgs; [
+     xterm
+   ];
   };
-  # services.xserver.excludePackages = with pkgs; [ xterm ];
-  services.desktopManager.plasma6.enable = true;
-  environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
-
-  # GNOME
-  # services.xserver = {
-  #  enable = true;
-  #  displayManager.gdm.enable = true;
-  #  desktopManager.gnome.enable = true;
-  #  excludePackages = with pkgs; [
-  #    xterm
-  #  ];
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
   # };
-  # environment.gnome.excludePackages = with pkgs; [
-  #   gnome.totem
-  #   gnome-tour
-  #   gnome.cheese
-  #   gnome.geary
-  #   gnome.gnome-music
-  #   gnome.yelp
-  #   gnome.gnome-contacts
-  #   gnome.gnome-initial-setup
-  #   epiphany
-  #   gnome.simple-scan
-  #   gnome.gnome-calculator
-  #   gnome.gnome-maps
-  #   gedit
-  # ];
-  # programs.dconf.enable = true;
 
+  environment.gnome.excludePackages = with pkgs; [
+    gnome.totem
+    gnome-tour
+    gnome.cheese
+    gnome.geary
+    gnome.gnome-music
+    gnome.yelp
+    gnome.gnome-contacts
+    gnome.gnome-initial-setup
+    epiphany
+    gnome.simple-scan
+    gnome.gnome-calculator
+    gnome.gnome-maps
+    gedit
+  ];
+  programs.dconf.enable = true;
+
+  environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+  
   # Fonts
   fonts.packages = with pkgs; [
     noto-fonts
@@ -131,18 +127,24 @@
   };
 
   environment.systemPackages = with pkgs; [
+    vesktop
+
     wget
 
     pciutils
+
+    kdePackages.qtstyleplugin-kvantum
+    kdePackages.qt6ct
+    
     python3
-    ruff-lsp
+    rustc
+    cargo
     clang
     clang-tools
     gnumake
     valgrind
     lldb
     nil
-
     nodejs
     typescript
   ];

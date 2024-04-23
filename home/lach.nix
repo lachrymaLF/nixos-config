@@ -39,41 +39,35 @@
 
     osu-lazer
 
-    # hydrapaper
-    # gnome.gnome-tweaks
-    # gnome.adwaita-icon-theme
-    # gnomeExtensions.appindicator
-    # gnomeExtensions.xwayland-indicator
-    # gnomeExtensions.weather-or-not
-    # gnomeExtensions.wiggle
-    # gnomeExtensions.media-controls
-    # gnomeExtensions.blur-my-shell
-    # gnomeExtensions.clipboard-history
-    # gnomeExtensions.open-bar
-    # gnomeExtensions.kimpanel
-    # gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
-    # gnomeExtensions.tray-icons-reloaded
-    # gnomeExtensions.burn-my-windows
-    # gnomeExtensions.compiz-windows-effect
+    hydrapaper
+    gnome.gnome-tweaks
+    gnome.adwaita-icon-theme
+    gnomeExtensions.appindicator
+    gnomeExtensions.xwayland-indicator
+    gnomeExtensions.weather-or-not
+    gnomeExtensions.wiggle
+    gnomeExtensions.media-controls
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.clipboard-history
+    gnomeExtensions.open-bar
+    gnomeExtensions.kimpanel
+    gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
+    gnomeExtensions.tray-icons-reloaded
+    gnomeExtensions.burn-my-windows
+    gnomeExtensions.compiz-windows-effect
   ];
 
- # dconf.settings = {
- #   "org/gnome/wm/keybindings" = {
- #     switch-input-source = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
- #     switch-input-source-backward = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
- #   };
- #    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
- #      binding = "<Ctrl><Alt>t";
- #      command = "kgx";
- #      name = "GNOME Console";
- #    };
- # };
-
-  qt = {
-    enable = true;
-#    platformTheme.name = "adwaita";
-#    style.name = "adwaita-dark";
-  };
+ dconf.settings = {
+   "org/gnome/wm/keybindings" = {
+     switch-input-source = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+     switch-input-source-backward = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+   };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Ctrl><Alt>t";
+      command = "kgx";
+      name = "GNOME Console";
+    };
+ };
     
   programs.emacs.enable = true;
   

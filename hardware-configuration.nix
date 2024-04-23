@@ -17,7 +17,7 @@
     # "vfio_pci" "vfio_iommu_type1" "vfio"
   ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-  boot.blacklistedKernelModules = [ "nouveau" "b44"  "b43" "b43legacy" "ssb" "brcmsmac" "bcma" ];
+  boot.blacklistedKernelModules = [ "nouveau" "b44"  "b43" "b43legacy" "ssb" "brcmsmac" "bcma" "edac_core" "edac_skx" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/37e07dcb-c3b1-4d65-bdb7-eb1fffce07a7";
@@ -69,7 +69,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.production;
   };
   
-  # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 
   
   hardware.opentabletdriver.enable = true;
