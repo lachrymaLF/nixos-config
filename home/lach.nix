@@ -1,4 +1,4 @@
-{ config, pkgs, lib, spicetify-nix, ... }:
+{ config, pkgs, lib, spicetify-nix, nixpkgs-2405, ... }:
 
 {
   imports = [
@@ -8,6 +8,16 @@
   home.username = "lach";
   home.homeDirectory = "/home/lach";
   
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (final: _: {
+      nixpkgs2405 = import nixpkgs-2405 {
+        inherit (final.stdenv.hostPlatform) system;
+        inherit (final) config;
+      };
+    })
+  ];
+
   home.packages = with pkgs; [
     xmousepasteblock
     fastfetch
@@ -22,8 +32,8 @@
     mpv
     vlc
     obs-studio
-    onedrive
-    onedrivegui
+    nixpkgs2405.onedrive
+    nixpkgs2405.onedrivegui
     p7zip
     pandoc
     piper
