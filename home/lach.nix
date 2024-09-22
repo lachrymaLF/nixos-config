@@ -32,6 +32,7 @@
 #    jdk
     krita
     mpv
+    nomacs
     vlc
     obs-studio
     nixpkgs2405.onedrive
@@ -84,12 +85,18 @@
  
   programs.vscode = {
     enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      bbenoist.nix
+    ];
   };
 
   programs.alacritty = {
     enable = true;
     settings = {
-      window.opacity = 0.98;
+      window = {
+        opacity = 0.92;
+        decorations = "Full";
+      };
       font = {
         size = 12.0;
 

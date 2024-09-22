@@ -46,6 +46,8 @@
     gnome-maps
     gedit
     gnome-terminal
+    gnome-console
+    gnome-text-editor
   ];
   
   # Fonts
