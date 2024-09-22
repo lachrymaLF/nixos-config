@@ -8,7 +8,8 @@
   home.username = "lach";
   home.homeDirectory = "/home/lach";
   
-  home.packages = with pkgs; [    
+  home.packages = with pkgs; [
+    xmousepasteblock
     fastfetch
     ffmpeg-full
     firefox
@@ -40,20 +41,20 @@
 
     hydrapaper
     gnome-tweaks
-#    adwaita-icon-theme
-#    gnomeExtensions.appindicator
-#    gnomeExtensions.xwayland-indicator
-#    gnomeExtensions.weather-or-not
+    gnomeExtensions.appindicator
+    gnomeExtensions.xwayland-indicator
+    gnomeExtensions.weather-or-not
 #    gnomeExtensions.wiggle
-#    gnomeExtensions.media-controls
-#    gnomeExtensions.blur-my-shell
-#    gnomeExtensions.clipboard-history
+    gnomeExtensions.media-controls
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.clipboard-history
 #    gnomeExtensions.open-bar
-#    gnomeExtensions.kimpanel
-#    gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
+    gnomeExtensions.kimpanel
+    gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
 #    gnomeExtensions.tray-icons-reloaded
 #    gnomeExtensions.burn-my-windows
 #    gnomeExtensions.compiz-windows-effect
+    gnomeExtensions.quick-settings-tweaker
   ];
 
   dconf.settings = {

@@ -93,10 +93,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vesktop
+    (pkgs.vesktop.override { withMiddleClickScroll = true; })
 
     wget
     pciutils
+    mg
   ];
 #  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   nixpkgs.overlays = [ 
