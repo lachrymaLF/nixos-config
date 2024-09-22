@@ -7,10 +7,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, spicetify-nix, ... }: {
+  outputs = inputs@{
+    nixpkgs,
+    home-manager,
+    spicetify-nix,
+    ...
+  }: {
     nixosConfigurations.lachrymal-abg = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

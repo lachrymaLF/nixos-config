@@ -7,20 +7,20 @@ in
   programs.spicetify = {
     enable = true;
 
-    enabledExtensions = with spicePkgs.extensions; [
-      playlistIcons
-      history
+#    enabledExtensions = with spicePkgs.extensions; [
+#      playlistIcons
+#      history
      # genre
-      adblock
-      savePlaylists
+#      adblock
+#      savePlaylists
      # volumePercentage
-      copyToClipboard
-      songStats
-      hidePodcasts
-      fullAppDisplay
-      groupSession
-      fullAlbumDate
-    ];
+#      copyToClipboard
+#      songStats
+#      hidePodcasts
+#      fullAppDisplay
+#      groupSession
+#      fullAlbumDate
+#    ];
   };
 }
   
