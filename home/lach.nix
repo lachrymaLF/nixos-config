@@ -39,8 +39,8 @@
 #    osu-lazer
 
     hydrapaper
-    gnome.gnome-tweaks
-#    gnome.adwaita-icon-theme
+    gnome-tweaks
+#    adwaita-icon-theme
 #    gnomeExtensions.appindicator
 #    gnomeExtensions.xwayland-indicator
 #    gnomeExtensions.weather-or-not

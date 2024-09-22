@@ -98,7 +98,7 @@
     wget
     pciutils
   ];
-  
+#  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   nixpkgs.overlays = [ 
     (import ./im-overlays.nix)
   ];
@@ -108,10 +108,12 @@
     package = pkgs.gitFull;
     config.credential.helper = "libsecret";
   };
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
+
   services.openssh.enable = true;
 
   # Samba
