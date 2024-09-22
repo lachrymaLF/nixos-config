@@ -16,6 +16,8 @@
         inherit (final) config;
       };
     })
+
+    (import ../im-overlays.nix)
   ];
 
   home.packages = with pkgs; [
@@ -44,6 +46,7 @@
 #    ungoogled-chromium
     yt-dlp
 #    davinci-resolve
+    reaper
 
     texlive.combined.scheme-medium
 
@@ -123,7 +126,6 @@
       fcitx5-lua
       fcitx5-rime
     ];
-#    fcitx5.waylandFrontend = true;
   };
 
   home.stateVersion = "24.11";
