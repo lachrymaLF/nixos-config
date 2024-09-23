@@ -20,7 +20,7 @@
     (import ../im-overlays.nix)
   ];
 
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     xmousepasteblock
     fastfetch
     ffmpeg-full
@@ -55,21 +55,22 @@
 
     hydrapaper
     gnome-tweaks
-    gnomeExtensions.appindicator
-    gnomeExtensions.xwayland-indicator
-    gnomeExtensions.weather-or-not
-#    gnomeExtensions.wiggle
-    gnomeExtensions.media-controls
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.clipboard-history
-#    gnomeExtensions.open-bar
-    gnomeExtensions.kimpanel
-    gnomeExtensions.legacy-gtk3-theme-scheme-auto-switcher
-#    gnomeExtensions.tray-icons-reloaded
-#    gnomeExtensions.burn-my-windows
-#    gnomeExtensions.compiz-windows-effect
-    gnomeExtensions.quick-settings-tweaker
-  ];
+  ]) ++ (with pkgs.gnomeExtensions; [
+    appindicator
+    xwayland-indicator
+    weather-or-not
+#    wiggle
+    media-controls
+    blur-my-shell
+    clipboard-history
+    open-bar
+    kimpanel
+    legacy-gtk3-theme-scheme-auto-switcher
+#    tray-icons-reloaded
+#    burn-my-windows
+#    compiz-windows-effect
+    quick-settings-tweaker
+  ]);
 
   dconf.settings = {
     "org/gnome/wm/keybindings" = {
@@ -87,6 +88,7 @@
     enable = true;
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
+      nvarner.typst-lsp
     ];
   };
 
